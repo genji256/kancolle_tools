@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #-----艦これFlashの左上の座標-----
 KAN_X=450
@@ -54,14 +54,12 @@ supply()
 	mouseOpe $SUPPLY_X $SUPPLY_Y
 
 	#3艦隊分繰り返す
-	i=0
 	max=3
-
-	while [ $i -lt $max ]
+	for ((i = 0; i < max; ++i))
 	do
 		echo "loop$i"
 		#艦隊番号を指定
-		mouseOpe $((kantaiX+rateX\*i)) $kantaiY
+		mouseOpe $((kantaiX+rateX*i)) $kantaiY
 		sleep 1s
 	
 		#全艦娘にチェックを入れる
@@ -71,9 +69,6 @@ supply()
 		#補給ボタンをクリック
 		mouseOpe $supplyBtnX $supplyBtnY
 		sleep 1s
-
-		i=$((i+1))
-
 	done
 	
 	sleep 1s
