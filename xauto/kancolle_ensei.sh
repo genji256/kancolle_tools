@@ -37,6 +37,24 @@ mouseOpe()
 }
 
 #-----帰還処理関数-----
+#遠征が帰還した際のクリック処理
+#クリック→約5秒→クリック→クリック
+returnHome()
+{
+	#
+	defX=700
+	defY=300
+
+
+	mouseOpe $defX $defY
+
+	sleep 6s
+
+	mouseOpe $defX $defY
+
+	mouseOpe $defX $defY
+
+}
 
 #-----出撃関数-----
 #引数で指定された艦隊が遠征する
@@ -152,16 +170,20 @@ supply()
 
 #-----main-----
 #supply
-sleep 3s
-sortie 1
+#sleep 3s
+#sortie 1
+
+while true
+do
+	
+	sleep 5m
+
+done
 
 echo "Done"
 
 #-----todo-----
 #各ボタンの座標を調べる
-#出撃艦数作成
 
 #-----memo-----
-#遠征からの帰還
-#クリック→約5秒→クリック→クリック
 
