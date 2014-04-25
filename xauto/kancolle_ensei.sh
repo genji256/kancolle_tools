@@ -24,6 +24,7 @@ SORTIE_Y=250
 SUPPLY_X=50
 SUPPLY_Y=210
 
+
 #-----マウス操作関数-----
 mouseOpe()
 {
@@ -58,6 +59,7 @@ returnHome()
 
 #-----出撃関数-----
 #引数で指定された艦隊が遠征する
+#遠征開始した時間を返す
 sortie()
 {
 	echo "sortie"
@@ -114,11 +116,17 @@ sortie()
 	#遠征開始
 	mouseOpe $decisionX $decisionY
 
+	#遠征開始の時間を記録
+	enseiStartTime=`date +%s`
+
 	sleep 6s
 
 	#ホーム画面へ
 	mouseOpe 0 0
 
+	echo $enseiStartTime
+	return 
+	
 }
 
 #-----補給関数-----
@@ -169,20 +177,50 @@ supply()
 }
 
 #-----main-----
-#supply
-#sleep 3s
-#sortie 1
+main()
+{
+	#-----遠征時間-----
+	enseiTime=()
+	enseiTime[0]=1260		#警備任務
+	enseiTime[1]=5460		#海上護衛
+	enseiTime[2]=2460		#防空射撃
 
-while true
-do
+	#-----遠征に出発した時間記録-----
+	enseiStartTime=()
+	enseiStartTime[0]=`sortie 1`
+	enseiStartTime[1]=`sortie 2`
+	enseiStartTime[2]=`sortie 3`
 	
-	sleep 5m
+	while true
+	do
+		#5分毎処理する	
+		sleep 5m
 
-done
+		for ((i=0; i<3; ++i))
+		do
+			#経過時間を求める
+			t=`date +%s`
+			et=$((t-{enseiStartTime[i]}))
 
-echo "Done"
+			if [$et -gt ${enseiTime[$i]}]
+			then
+			#帰還フラグを立てる
 
-#-----todo-----
+			fi
+			
+	
+		done
+	
+	done
+	
+	echo "Done"
+	
+}
+
+main
+
+
+#----todo-----
 #各ボタンの座標を調べる
 
 #-----memo-----
