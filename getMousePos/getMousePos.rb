@@ -16,6 +16,17 @@ class GetMousePos
 	#カウントダウン関数
 	def countDown()
 		puts "CountDown!"
+
+#		inisec = Time.now.to_f
+#		count = @s
+#		while count >= 0 do
+#			nowsec = Time.now.to_f
+#			if nowsec -inisec > 1.0
+#				puts count 
+#				count -= 1
+#			end
+#		end
+
 		@s.downto(0) { |num|
 			puts num
 			sleep 1
@@ -59,7 +70,3 @@ class GetMousePos
 
 end
 
-gmp = GetMousePos.new(3)
-gmp.start
-pos = gmp.getMousePos
-puts "x:#{pos[0]} y:#{pos[1]}"
