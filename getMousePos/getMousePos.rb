@@ -35,7 +35,8 @@ class GetMousePos
 	
 	#xmouseposコマンド実行関数
 	def xmousepos
-		return %x( /bin/bash './xmousepos.sh')
+		return %x(xmousepos)
+		#return %x( /bin/bash './getMousePos/xmousepos.sh')
 	end
 
 	#xmouseposで取得した座標を整理する
